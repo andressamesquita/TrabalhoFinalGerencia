@@ -56,4 +56,8 @@ class RegistrarUsuarioView(View):
 
 		return render(request, self.template_name, {'form':form})
 
+def verTime(request, gestor_id):
+	return render(request, 'meuTime.html', {'perfil_logado': get_usuario_logado(request)})
 
+def verProjetos(request, gestor_id):
+	return render(request, 'meusProjetos.html', {'perfil_logado': get_usuario_logado(request)})
