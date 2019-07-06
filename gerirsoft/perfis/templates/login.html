@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body %}
+	
+	<form action="{% url 'login' %}" class="form-signin" role="form" method="post">
+		{% csrf_token %}
+		<h2 class="form-signin-heading">{% trans 'Login' %}</h2>
+
+		<input type="text" class="form-control" id="id_username" name="username" placeholder="Nome" required autofocus>
+
+		<input type="password" class="form-control" id="id_password" name="password" placeholder="Senha" required>
+
+		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">{% trans 'Login' %}</button>
+
+		<input type="hidden" name="next" value="{{ next }}">
+
+		{% if form.errors %}		
+		<div class="alert alert-danger">
+			<button type="button" class="close"
+				data-dismiss="alert" aria-hidden="true">x				
+			</button>
+		</div>		
+		{% endif %}
+
+		<a href="{% url 'registrar' %}">{% trans 'Registre-se' %}</a>
+		
+	</form>
+
+{% endblock %}

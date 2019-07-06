@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body %}
+
+
+{% if perfil_logado.gestor %}
+    <p>É gestor</p>
+{% else %}
+    <p>Aaaah, não é gestor</p>
+{% endif %}
+
+
+{% endblock %}

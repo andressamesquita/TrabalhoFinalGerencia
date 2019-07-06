@@ -14,7 +14,7 @@ class Projeto(models.Model):
     data_prazo = models.DateTimeField(auto_now_add=False)
     hr_prazo = models.TimeField()
 
-    tarefas = models.ForeignKey(Tarefa, on_delete=models.CASCADE, related_name="tarefas")
+    tarefas = models.ForeignKey('Tarefa', on_delete=models.CASCADE, related_name="tarefas")
     statusProjeto = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False) 
 
 class Tarefa(models.Model):
@@ -27,12 +27,12 @@ class Tarefa(models.Model):
     nome_tarefa = models.CharField(max_length=255, null=False)
     data_prazo = models.DateTimeField(auto_now_add=False)
     hr_prazo = models.TimeField()
-    responsavel = models.ForeignKey(Membro, on_delete=models.CASCADE, related_name="responsavel")
+    responsavel = models.ForeignKey('perfis.Membro', on_delete=models.CASCADE, related_name="responsavel")
     statusTarefa = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False) 
 
 class Time(models.Model):
     
-    membros = models.ManyToManyField('self', related_name = 'membros_time', symmetrical=False, through='Membro')
+    membros = models.ManyToManyField('perfis.Membro', related_name = 'membros_time', symmetrical=False)
     
 
     

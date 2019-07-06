@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body %}
+<form class = "form-signin"  method="post" 
+	action="{% url 'registrar' %}">
+	{% csrf_token %}
+
+	<h2 class="form-signin-heading">{% trans 'Crie seu usuário' %}</h2>
+	<input 	name="email" id = "id_email" class = "form-control"
+			placeholder="E-mail *" required autofocus>
+
+	<input 	name="nome" id = "id_nome" class = "form-control"
+			placeholder="Nome *" required>
+
+	<input 	name="senha" id = "id_senha" class = "form-control"
+            placeholder="Senha *" type = "password" required>
+	<hr/>
+
+	<button class="btn btn-lg btn-primary btn-block"
+			type = "submit" value="Login">{% trans 'Registrar' %}</button>
+
+	{% if form.errors %}		
+	<div class="alert alert-danger">
+		<button type="button" class="close"
+				data-dismiss="alert" aria-hidden="true">x				
+		</button>
+		{{ form.non_field_errors }}
+	</div>		
+	{% endif %}
+</form>
+
+
+{% endblock %}
