@@ -5,10 +5,10 @@
 <div class="container">
     <ul class="navbar navbar-dark bg-dark">
         <li class="nav-item">
-            <a class="nav-link active" href="{% url 'meusProjetos' perfil_logado.gestor.id %}">Meus Projetos</a>
+            <a class="nav-link active" href="{% url 'meusProjetos' %}">Meus Projetos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'meuTime' perfil_logado.gestor.id %}">Meu time</a>
+            <a class="nav-link" href="{% url 'meuTime' %}">Meu time</a>
         </li>
         <li>
             Gestor {{ perfil_logado.gestor.nome }}

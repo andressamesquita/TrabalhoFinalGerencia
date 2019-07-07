@@ -7,7 +7,6 @@ from projetos.models import *
 class Gestor(models.Model):
     nome =  models.CharField(max_length=255, null=False)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='gestor')
-    projetos = models.ForeignKey(Projeto, on_delete=models.CASCADE, related_name="projetos", null=True)
 
 
     @property

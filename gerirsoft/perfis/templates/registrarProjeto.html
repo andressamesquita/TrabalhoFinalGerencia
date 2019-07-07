@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body %}
+<form class = "form-signin"  method="post" 
+	action="{% url 'novoProjeto' %}">
+	{% csrf_token %}
+
+	<h2 class="form-signin-heading">{% trans 'Crie seu projeto' %}</h2>
+	<input 	name="nome" id = "id_nome" class = "form-control"
+			placeholder="Nome *" required autofocus>
+
+	<input 	name="data" id = "id_data" class = "form-control"
+			placeholder="Data *" type= date required>
+
+    <input 	name="hora" id = "id_hora" class = "form-control"
+			placeholder="Hora *" type= time required>
+
+    <input 	name="status" id = "id_status" class = "form-control"
+            placeholder="Status *" required>        
+	<hr/>
+
+	<button class="btn btn-lg btn-primary btn-block"
+			type = "submit" value="Login">{% trans 'Registrar' %}</button>
+
+	{% if form.errors %}		
+	<div class="alert alert-danger">
+		<button type="button" class="close"
+				data-dismiss="alert" aria-hidden="true">x				
+		</button>
+		{{ form.non_field_errors }}
+	</div>		
+	{% endif %}
+</form>
+
+
+{% endblock %}

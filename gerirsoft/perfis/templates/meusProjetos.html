@@ -1,1 +1,5 @@
-ddd
+<a href="{% url 'novoProjeto' %}">Novo Projeto</a>
+
+{% for projeto in projetos %}
+    {{projeto.nome}}
+{% endfor %}

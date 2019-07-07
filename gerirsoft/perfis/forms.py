@@ -10,3 +10,10 @@ class RegistrarUsuarioForm(forms.Form):
 	nome = forms.CharField(required=True)
 	email = forms.EmailField(required=True)
 	senha = forms.CharField(required=True)
+
+
+class RegistrarProjetoForm(forms.Form):
+	nome = forms.CharField(required=True)
+	data = forms.DateTimeField(required=True)
+	hora = forms.TimeField(required=True)
+	status = forms.CharField(required=True)

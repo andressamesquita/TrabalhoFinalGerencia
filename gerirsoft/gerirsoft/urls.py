@@ -22,6 +22,7 @@ urlpatterns = [
     path('', index, name = 'index'),
     path('login/', LoginView.as_view(), name="login"),
     path('registrar/', RegistrarUsuarioView.as_view(), name="registrar"),
-    path('gestor/<int:gestor_id>/time/', verTime, name='meuTime'),
-    path('gestor/<int:gestor_id>/projetos', verProjetos, name='meusProjetos'),
+    path('gestor/time/', verTime, name='meuTime'),
+    path('gestor/projetos', verProjetos, name='meusProjetos'),
+    path('gestor/projetos/novoProjeto', RegistrarProjetoView.as_view(), name='novoProjeto'),
 ]

@@ -12,9 +12,8 @@ class Projeto(models.Model):
     
     nome = models.CharField(max_length=255, null=False)
     data_prazo = models.DateTimeField(auto_now_add=False)
-    hr_prazo = models.TimeField()
-
-    tarefas = models.ForeignKey('Tarefa', on_delete=models.CASCADE, related_name="tarefas")
+    hora_prazo = models.TimeField()
+    dono = models.ForeignKey("perfis.Gestor", on_delete=models.CASCADE, related_name="projetos", null=True)
     statusProjeto = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False) 
 
 class Tarefa(models.Model):
@@ -26,9 +25,11 @@ class Tarefa(models.Model):
 
     nome_tarefa = models.CharField(max_length=255, null=False)
     data_prazo = models.DateTimeField(auto_now_add=False)
-    hr_prazo = models.TimeField()
+    hora_prazo = models.TimeField()
     responsavel = models.ForeignKey('perfis.Membro', on_delete=models.CASCADE, related_name="responsavel")
     statusTarefa = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False) 
+    p = models.ForeignKey('Projeto', on_delete=models.CASCADE, related_name="tarefas", null=True)
+
 
 class Time(models.Model):
     
