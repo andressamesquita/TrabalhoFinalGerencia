@@ -1,21 +1,24 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load i18n %}
 {% block body %}
 
-<div class="container">
-    <ul class="navbar navbar-dark bg-dark">
-        <li class="nav-item">
-            <a class="nav-link active" href="{% url 'meusProjetos' %}">Meus Projetos</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'meuTime' %}">Meu time</a>
-        </li>
-        <li>
-            Gestor {{ perfil_logado.gestor.nome }}
-            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-        </li>
-    </ul>
+<div class="header">
+    <nav class="navbar navbar-light" style="background-color: #889197;">
+    <button type="button" class="btn btn-dark"><a class="navbar-brand" href="{% url 'meusProjetos' %}">MEUS PROJETOS</a></button>
+    <button type="button" class="btn btn-dark"><a class="navbar-brand" href="{% url 'meuTime' %}">MEU TIME</a></button>
+    <button type="button" class="btn btn-dark pull-right"><a class="navbar-brand" href="{% url 'logout' %}">Sair</a></button>
+    <h3 class="pull-right gestor" style="margin-right: 2em;">Gestor {{ perfil_logado.gestor.nome }}</h3>
+    
+</nav>
 </div>
+<div class="container-logo">
+    <img src="{% static 'img/gerirSoft.png' %}" class="img-fluid logo" alt="Logo gerirSoft" width="430" height="450" >
+</div>
+       
+
+
+        
 
 
 {% endblock %}
