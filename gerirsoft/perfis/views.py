@@ -11,6 +11,10 @@ from perfis.models import *
 import random
 from django.db import transaction
 
+
+def abertura(request):
+	return render(request, 'gerirSoft.html')
+
 @login_required
 def index(request):
 

@@ -2,6 +2,15 @@
 @CHARSET "UTF-8";
 
 /* Space out content a bit */
+
+.container-logo {
+  text-align: center;
+}
+.logo{
+  margin-top: 40px;
+}
+
+
 body {
   padding-top: 20px;
   padding-bottom: 20px;

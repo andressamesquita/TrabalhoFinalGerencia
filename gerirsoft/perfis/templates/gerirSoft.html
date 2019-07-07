@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block body %}
+
+<div class="header pull-right">
+    <nav class="navbar navbar-light" style="background-color:white;">
+    <a class="navbar-brand" href="{% url 'registrar' %}">Registre-se</a>
+    <button type="button" class="btn btn-dark"><a class="navbar-brand" href="{% url 'login' %}">LOGIN</a></button>
+    </nav>
+</div>
+
+<div class="container-logo">
+    
+    <img src="{% static 'img/gerirSoft.png' %}" class="img-fluid logo" alt="Logo gerirSoft" style="margin-left: 200px" width="430" height="450" >
+</div>
+
+
+{% endblock %}
