@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', abertura, name='abertura'),
     path('index', index, name = 'index'),
+    path('projeto/detail/<int:projeto_id>', projetoDetail, name = 'projetoDetail'),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', v.LogoutView.as_view(template_name = 'login.html'), name="logout"),
     path('registrar/', RegistrarUsuarioView.as_view(), name="registrar"),

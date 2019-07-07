@@ -15,6 +15,9 @@ from django.db import transaction
 def abertura(request):
 	return render(request, 'gerirSoft.html')
 
+def projetoDetail(request, projeto_id):
+	return render(request, 'projetoDetail.html')
+
 @login_required
 def index(request):
 

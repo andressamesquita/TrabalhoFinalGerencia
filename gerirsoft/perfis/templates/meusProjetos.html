@@ -1,5 +1,33 @@
-<a href="{% url 'novoProjeto' %}">Novo Projeto</a>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block body %}
 
-{% for projeto in projetos %}
-    {{projeto.nome}}
-{% endfor %}
+<h3>Controle de Projetos</h3>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Status</th>
+        <th scope="col">Data</th>
+        <th scope="col">Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for projeto in projetos %}
+        <tr>
+        <th scope="row"><a href="{% url 'projetoDetail' projeto.id %}">{{projeto.nome}}</a></th>
+        <td>{{projeto.statusProjeto}}</td>
+        <td>{{projeto.data_prazo}}</td>
+        <td>{{projeto.hora_prazo}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+
+
+  <button type="button" class="btn btn-dark pull-right"><a href="{% url 'novoProjeto' %}">Novo Projeto</a></button>
+
+{% endblock %}
