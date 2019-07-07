@@ -6,6 +6,18 @@
 .container-logo {
   text-align: center;
 }
+
+.container-controle {
+  text-align: center;
+  background-color:#030E63;
+  text-decoration-color: white;
+}
+
+div nav h3{
+  color: white;
+}
+
+
 .logo{
   margin-top: 40px;
 }

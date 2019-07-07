@@ -104,7 +104,16 @@ class RegistrarProjetoView(View):
 			dados_form = form.cleaned_data
 			projeto = Projeto(nome = dados_form['nome'], data_prazo = dados_form['data'], hora_prazo = dados_form['hora'], statusProjeto = dados_form['status'], dono = get_usuario_logado(request).gestor)
 			projeto.save()
-			return redirect('index')
+			
+			usuario_logado = get_usuario_logado(request)
+			projetos = Projeto.objects.filter(dono=usuario_logado.gestor.id)
+
+			contexto = {
+				'perfil_logado': usuario_logado,
+				'projetos':projetos
+			}
+
+			return render(request, 'meusProjetos.html', contexto)
 
 		return render(request, self.template_name, {'form':form})
 
@@ -125,7 +134,17 @@ class RegistrarMembroView(View):
 			time = getTime(request)
 			relacionarMembroTime(membro, time)
 
-			return redirect('index')
+			usuario_logado = get_usuario_logado(request)
+	
+			time = Time.objects.get(dono=usuario_logado.gestor.id)
+			membrosTime = MembrosTime.objects.filter(time = time)
+
+			contexto = {
+				'perfil_logado': usuario_logado,
+				'time': membrosTime
+			}
+
+			return render(request, 'meuTime.html', contexto)
 
 		return render(request, self.template_name, {'form':form})
 

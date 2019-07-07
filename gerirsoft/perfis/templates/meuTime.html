@@ -1,5 +1,44 @@
-<a href="{% url 'novoMembro' %}">Novo Membro</a>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block body %}
 
-{% for membro in time %}
-    {{membro.membro.nome}}
-{% endfor %}
+
+<div class="container-controle">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <h3>Meu time</h3>
+    </nav>
+</div>
+    
+    
+    <div class="container">
+     
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Função</th>
+                <!--<th scope="col">Projeto(s)</th>-->
+                <th scope="col">--</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for membro in time %}
+                <tr>
+                <th scope="row">
+                    <a>{{membro.membro.id}}</a></th>
+                <td>{{membro.membro.nome}}</td>
+                <td>{{membro.membro.funcao}}</td>
+                <!--<td></td>-->
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <a class="btn btn-primary pull-right" href="{% url 'novoMembro' %}">Novo Membro</a>
+          <a class="btn btn-primary" href="{% url 'index' %}">Voltar</a>
+        
+    </div>
+
+
+{% endblock %}
