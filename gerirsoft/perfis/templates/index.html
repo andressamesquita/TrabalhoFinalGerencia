@@ -4,18 +4,18 @@
 {% block body %}
 
 <div class="header">
-    <nav class="navbar navbar-light" style="background-color: #889197;">    
+    <nav class="navbar" style="background-color: #030E63;">    
         {% if perfil_logado.gestor  %}
-            <button type="button" class="btn btn-dark"><a class="navbar-brand" href="{% url 'meusProjetos' %}">MEUS PROJETOS</a></button>
-            <button type="button" class="btn btn-dark"><a class="navbar-brand" href="{% url 'meuTime' %}">MEU TIME</a></button>
-            <button type="button" class="btn btn-dark pull-right"><a class="navbar-brand" href="{% url 'logout' %}">Sair</a></button>
+            <a class="btn btn-primary" style="height: 55px;" href="{% url 'meusProjetos' %}">MEUS PROJETOS</a>
+            <a class="btn btn-primary" style="height: 55px;" href="{% url 'meuTime' %}">MEU TIME</a>
+            <a class="btn btn-primary pull-right" style="height: 55px;" href="{% url 'logout' %}">Sair</a>
             <h3 class="pull-right gestor" style="margin-right: 2em;">Gestor {{ perfil_logado.gestor.nome }}</h3>
             
             
         {% else %}
-            <button type="button" class="btn btn-dark"><a class="navbar-brand" href="#">MINHA TIMELINE</a></button>
-            <button type="button" class="btn btn-dark"><a class="navbar-brand" href="#">MEUS PROJETOS</a></button>
-            <button type="button" class="btn btn-dark pull-right"><a class="navbar-brand" href="{% url 'logout' %}">Sair</a></button>
+            <a class="btn btn-primary" style="height: 55px;" href="#">MINHA TIMELINE</a>
+            <a class="btn btn-primary" style="height: 55px;" href="#">MEUS PROJETOS</a>
+            <a class="btn btn-primary pull-right" style="height: 55px;" href="{% url 'logout' %}">Sair</a>
             <h3 class="pull-right gestor" style="margin-right: 2em;">Membro {{ perfil_logado.membro.nome }}</h3>
         {% endif %}
    </nav>
