@@ -16,7 +16,7 @@ class Gestor(models.Model):
 class Membro(models.Model):
     nome =  models.CharField(max_length=255, null=False)
     funcao = models.CharField(max_length=255, null=False)
-    code = models.IntegerField()
+    code = models.CharField(max_length=255, null=False)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='membro')
 
     @property

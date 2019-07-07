@@ -8,6 +8,8 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from perfis.forms import *
 from perfis.models import *
+import random
+from django.db import transaction
 
 @login_required
 def index(request):
@@ -45,6 +47,7 @@ class RegistrarUsuarioView(View):
 	def get(self, request):
 		return render (request, self.template_name)
 	
+	@transaction.atomic
 	def post(self, request):
 		form = RegistrarUsuarioForm (request.POST)
 		if form.is_valid ():
@@ -52,17 +55,27 @@ class RegistrarUsuarioView(View):
 			usuario = User.objects.create_user (username = dados_form['nome'], email = dados_form['email'], password = dados_form['senha'])
 			perfil = Gestor(nome=dados_form['nome'], usuario = usuario)
 			perfil.save()
+			time = Time(dono = perfil)
+			time.save()
 			return redirect('index')
 
 		return render(request, self.template_name, {'form':form})
 
 def verTime(request):
+	usuario_logado = get_usuario_logado(request)
+	
+	time = Time.objects.filter(dono=usuario_logado.gestor.id)
+
+	contexto = {
+		'perfil_logado': usuario_logado,
+		'time':time
+	}
+
 	return render(request, 'meuTime.html', {'perfil_logado': get_usuario_logado(request)})
 
 def verProjetos(request):
 	usuario_logado = get_usuario_logado(request)
 	projetos = Projeto.objects.filter(dono=usuario_logado.gestor.id)
-	print(projetos)
 
 	contexto = {
 		'perfil_logado': usuario_logado,
@@ -86,3 +99,50 @@ class RegistrarProjetoView(View):
 			return redirect('index')
 
 		return render(request, self.template_name, {'form':form})
+
+class RegistrarMembroView(View):
+	template_name = 'registrarMembro.html'
+
+	def get(self, request):
+		return render (request, self.template_name)
+	
+	def post(self, request):
+		form = RegistrarMembroForm (request.POST)
+		if form.is_valid ():
+			dados_form = form.cleaned_data
+			senha = gerarSenha()
+			usuario = User.objects.create_user (username = dados_form['nome'], email = dados_form['email'], password = senha)
+			membro = Membro(nome = dados_form['nome'], funcao = dados_form['funcao'], usuario = usuario, code = senha)
+			membro.save()
+			time = getTime(request)
+			relacionarMembroTime(membro, time)
+
+			return redirect('index')
+
+		return render(request, self.template_name, {'form':form})
+
+
+def gerarSenha():
+	senha = ""
+	alfa = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
+	index = random.randint(0,25)
+	senha += alfa[index]
+	numero = random.randint(0,199)
+	senha += str(numero)
+	index = random.randint(0,25)
+	senha += alfa[index]
+	numero = random.randint(0,199)
+	senha += str(numero)
+
+	return senha
+
+def relacionarMembroTime(membro, time):
+	membrosTime = MembrosTime()
+	membrosTime.membro = membro
+	membrosTime.time = time
+	membrosTime.save()
+
+def getTime(request):
+	usuario_logado = Gestor.objects.get(id=get_usuario_logado(request).gestor.id)
+	time = Time.objects.get(dono=usuario_logado)
+	return time

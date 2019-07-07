@@ -32,9 +32,12 @@ class Tarefa(models.Model):
 
 
 class Time(models.Model):
+    dono = models.ForeignKey("perfis.Gestor", on_delete=models.CASCADE, related_name="dono", null=True)
+    membros = models.ManyToManyField('perfis.Membro', related_name = 'membros_time', symmetrical=False, through='MembrosTime')
     
-    membros = models.ManyToManyField('perfis.Membro', related_name = 'membros_time', symmetrical=False)
-    
+class MembrosTime(models.Model):
+    membro = models.ForeignKey("perfis.Membro", on_delete=models.CASCADE, related_name="membros", null=True)
+    time = models.ForeignKey("Time", on_delete=models.CASCADE, related_name="time", null=True)
 
     
     #Cada gestor terá seu próprio time.
