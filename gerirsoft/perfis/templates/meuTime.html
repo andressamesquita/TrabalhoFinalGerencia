@@ -1,5 +1,5 @@
 <a href="{% url 'novoMembro' %}">Novo Membro</a>
 
 {% for membro in time %}
-    {{membro.nome}}
+    {{membro.membro.nome}}
 {% endfor %}

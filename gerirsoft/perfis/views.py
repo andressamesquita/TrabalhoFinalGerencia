@@ -68,14 +68,15 @@ class RegistrarUsuarioView(View):
 def verTime(request):
 	usuario_logado = get_usuario_logado(request)
 	
-	time = Time.objects.filter(dono=usuario_logado.gestor.id)
+	time = Time.objects.get(dono=usuario_logado.gestor.id)
+	membrosTime = MembrosTime.objects.filter(time = time)
 
 	contexto = {
 		'perfil_logado': usuario_logado,
-		'time':time
+		'time':membrosTime
 	}
 
-	return render(request, 'meuTime.html', {'perfil_logado': get_usuario_logado(request)})
+	return render(request, 'meuTime.html', contexto)
 
 def verProjetos(request):
 	usuario_logado = get_usuario_logado(request)
