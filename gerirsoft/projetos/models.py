@@ -16,6 +16,9 @@ class Projeto(models.Model):
     dono = models.ForeignKey("perfis.Gestor", on_delete=models.CASCADE, related_name="projetos", null=True)
     statusProjeto = models.CharField(max_length=20, choices=STATUS_CHOICES, null=False, blank=False) 
 
+    def excluir_projeto(self):
+        self.delete()
+
 class Tarefa(models.Model):
     STATUS_CHOICES = (
         ('PENDENTE','pendente'),
@@ -27,7 +30,7 @@ class Tarefa(models.Model):
     data_prazo = models.DateTimeField(auto_now_add=False)
     hora_prazo = models.TimeField()
     responsavel = models.ForeignKey('perfis.Membro', on_delete=models.CASCADE, related_name="responsavel")
-    statusTarefa = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False) 
+    statusTarefa = models.CharField(max_length=20, choices=STATUS_CHOICES, null=False, blank=False) 
     p = models.ForeignKey('Projeto', on_delete=models.CASCADE, related_name="tarefas", null=True)
 
 

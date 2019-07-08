@@ -30,4 +30,5 @@ urlpatterns = [
     path('gestor/projetos', verProjetos, name='meusProjetos'),
     path('gestor/projetos/novoProjeto', RegistrarProjetoView.as_view(), name='novoProjeto'),
     path('gestor/projetos/novoMembro', RegistrarMembroView.as_view(), name='novoMembro'),
+    path('gestor/projetos/<int:projeto_id>/excluir', deletar_projeto, name='excluir_projeto'),
 ]

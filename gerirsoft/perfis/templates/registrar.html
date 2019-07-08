@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block body %}
+{% load staticfiles %}
+
+
+<img src="{% static 'img/gerirSoft.png' %}" class="img-fluid " style="text-align: center" width="120" height="130" alt="Logo gerirSoft">
+
+
 <form class = "form-signin"  method="post" 
 	action="{% url 'registrar' %}">
 	{% csrf_token %}

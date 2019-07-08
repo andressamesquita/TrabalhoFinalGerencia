@@ -20,6 +20,8 @@
             <th scope="col">Status</th>
             <th scope="col">Data</th>
             <th scope="col">Hora</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +31,8 @@
             <td>{{projeto.statusProjeto}}</td>
             <td>{{projeto.data_prazo}}</td>
             <td>{{projeto.hora_prazo}}</td>
+            <td><a class="btn btn-primary pull-right btn btn-success" href="#">Editar</a></td>
+            <td><a class="btn btn-outline-danger" href="{% url 'excluir_projeto' projeto.id %}">Excluir</a></td>
           </tr>
           {% endfor %}
         </tbody>

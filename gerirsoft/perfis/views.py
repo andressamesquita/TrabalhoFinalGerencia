@@ -10,6 +10,10 @@ from perfis.forms import *
 from perfis.models import *
 import random
 from django.db import transaction
+#from django.core.mail import EmailMessage
+
+
+
 
 
 def abertura(request):
@@ -91,6 +95,27 @@ def verProjetos(request):
 	}
 
 	return render(request, 'meusProjetos.html', contexto)
+
+
+@login_required
+def deletar_projeto(request, projeto_id):
+	projeto = Projeto.objects.get(id=projeto_id)
+	projeto.excluir_projeto()
+	
+	usuario_logado = get_usuario_logado(request)
+	projetos = Projeto.objects.filter(dono=usuario_logado.gestor.id)
+
+	contexto = {
+		'perfil_logado': usuario_logado,
+		'projetos':projetos
+	}
+
+	return render(request, 'meusProjetos.html', contexto)
+	
+
+
+
+
 
 class RegistrarProjetoView(View):
 	template_name = 'registrarProjeto.html'
