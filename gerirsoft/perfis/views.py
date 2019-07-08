@@ -18,8 +18,9 @@ def abertura(request):
 
 def projetoDetail(request, projeto_id):
 	projeto = Projeto.objects.get(id=projeto_id)
-
+	tarefas = Tarefa.objects.filter(projeto=projeto_id)
 	contexto = {
+		"tarefas": tarefas,
 		"projeto": projeto
 	}
 
@@ -238,6 +239,15 @@ class RegistrarTarefaView(View):
 			projeto = Projeto.objects.get(id=projeto_id)
 			tarefa = Tarefa(nome_tarefa = dados_form['nome'], data_prazo = dados_form['data'], hora_prazo = dados_form['hora'], statusTarefa = dados_form['status'], projeto = projeto)
 			tarefa.save()
-			return redirect('index')
+			
+			projeto = Projeto.objects.get(id=projeto_id)
+			tarefas = Tarefa.objects.filter(projeto=projeto_id)
+			contexto = {
+				"tarefas": tarefas,
+				"projeto": projeto
+			}
+
+			return render(request, 'projetoDetail.html', contexto)
+
 
 		return render(request, self.template_name, {'form':form})

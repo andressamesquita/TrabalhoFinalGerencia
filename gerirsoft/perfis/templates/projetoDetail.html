@@ -1,1 +1,54 @@
-<a href="{% url 'novaTarefa' projeto.id %}">Nova Tarefa</a>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block body %}
+
+<div class="container-controle">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <h3>Tarefas</h3>
+        
+    </nav>
+</div>
+
+
+<div class="container">
+ 
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Tarefa</th>
+            <th scope="col">Membro</th>
+            <th scope="col">Data</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for tarefa in tarefas %}
+            <tr>
+            <th scope="row"><a href="{% url 'projetoDetail' projeto.id %}">{{tarefa.nome_tarefa}}</a></th>
+            <td>{{tarefa.responsavel.nome}}</td>
+            <td>{{tarefa.data_prazo}}</td>
+            <td>{{tarefa.hora_prazo}}</td>
+            <td>{{tarefa.statusTarefa}}</td>
+            <td><a class="btn btn-primary pull-right btn btn-success" href="#">Editar</a></td>
+            <td><a class="btn btn-outline-danger" href="#">Excluir</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+      <a class="btn btn-primary pull-right" href="{% url 'novaTarefa' projeto.id %}">Nova Tarefa</a>
+      <a class="btn btn-primary" href="{% url 'meusProjetos' %}">Voltar</a>
+    
+</div>
+  
+
+
+ 
+
+{% endblock %}
+
+
+

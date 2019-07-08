@@ -15,10 +15,14 @@
     <input 	name="hora" id = "id_hora" class = "form-control"
 			placeholder="Hora *" type= time required>
 
-    <input 	name="status" id = "id_status" class = "form-control"
-            placeholder="Status *" required>        
-	<hr/>
+	<h3>Status</h3>
+	<select	name="status" id = "id_status" class = "form-control">
+		<option value="PENDENTE">Pendente</option>
+		<option value="EM DESENVOLVIMENTO">Em desenvolvimento</option>
+		<option value="FINALIZADO">Finalizado</option>
+	</select>   
 
+	<br>
 	<button class="btn btn-lg btn-primary btn-block"
 			type = "submit" value="Login">{% trans 'Registrar' %}</button>
 
