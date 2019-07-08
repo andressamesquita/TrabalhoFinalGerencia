@@ -17,7 +17,13 @@ def abertura(request):
 	return render(request, 'gerirSoft.html')
 
 def projetoDetail(request, projeto_id):
-	return render(request, 'projetoDetail.html')
+	projeto = Projeto.objects.get(id=projeto_id)
+
+	contexto = {
+		"projeto": projeto
+	}
+
+	return render(request, 'projetoDetail.html', contexto)
 
 @login_required
 def index(request):
@@ -211,3 +217,27 @@ def getTime(request):
 	usuario_logado = Gestor.objects.get(id=get_usuario_logado(request).gestor.id)
 	time = Time.objects.get(dono=usuario_logado)
 	return time
+	
+
+class RegistrarTarefaView(View):
+	template_name = 'registrarTarefa.html'
+
+	def get(self, request, projeto_id):
+		projeto = Projeto.objects.get(id=projeto_id)
+
+		contexto = {
+			"projeto": projeto
+		}
+
+		return render (request, self.template_name, contexto)
+	
+	def post(self, request, projeto_id):
+		form = RegistrarTarefaForm (request.POST)
+		if form.is_valid ():
+			dados_form = form.cleaned_data
+			projeto = Projeto.objects.get(id=projeto_id)
+			tarefa = Tarefa(nome_tarefa = dados_form['nome'], data_prazo = dados_form['data'], hora_prazo = dados_form['hora'], statusTarefa = dados_form['status'], projeto = projeto)
+			tarefa.save()
+			return redirect('index')
+
+		return render(request, self.template_name, {'form':form})

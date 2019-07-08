@@ -32,4 +32,6 @@ urlpatterns = [
     path('gestor/projetos/novoMembro', RegistrarMembroView.as_view(), name='novoMembro'),
     path('gestor/projetos/<int:projeto_id>/excluir', deletar_projeto, name='excluir_projeto'),
     path('gestor/time/<int:membro_id>/excluir', deletar_membro, name='excluir_membro'),
+    path('projeto/detail/novaTarefa/<int:projeto_id>', RegistrarTarefaView.as_view(), name='novaTarefa'),
+
 ]
