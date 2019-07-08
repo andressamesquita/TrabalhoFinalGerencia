@@ -14,7 +14,7 @@ class Projeto(models.Model):
     data_prazo = models.DateTimeField(auto_now_add=False)
     hora_prazo = models.TimeField()
     dono = models.ForeignKey("perfis.Gestor", on_delete=models.CASCADE, related_name="projetos", null=True)
-    statusProjeto = models.CharField(max_length=1, choices=STATUS_CHOICES, null=False, blank=False) 
+    statusProjeto = models.CharField(max_length=20, choices=STATUS_CHOICES, null=False, blank=False) 
 
 class Tarefa(models.Model):
     STATUS_CHOICES = (
