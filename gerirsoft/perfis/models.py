@@ -22,3 +22,6 @@ class Membro(models.Model):
     @property
     def email(self):
         return self.usuario.email
+
+    def excluir_membro(self):
+        self.delete()

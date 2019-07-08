@@ -32,7 +32,7 @@
                 <td>{{membro.membro.nome}}</td>
                 <td>{{membro.membro.funcao}}</td>
                 <td><a class="btn btn-primary pull-right btn btn-success" href="#">Editar</a></td>
-                <td><a class="bbtn btn-outline-danger" href="#">Excluir</a></td>
+                <td><a class="bbtn btn-outline-danger" href="{% url 'excluir_membro' membro.id %}">Excluir</a></td>
                 <!--<td></td>-->
               </tr>
               {% endfor %}

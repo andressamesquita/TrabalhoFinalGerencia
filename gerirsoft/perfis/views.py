@@ -13,9 +13,6 @@ from django.db import transaction
 #from django.core.mail import EmailMessage
 
 
-
-
-
 def abertura(request):
 	return render(request, 'gerirSoft.html')
 
@@ -85,6 +82,25 @@ def verTime(request):
 
 	return render(request, 'meuTime.html', contexto)
 
+@login_required
+def deletar_membro(request, membro_id):
+	membro = Membro.objects.get(id=membro_id)
+	membro.excluir_membro()
+	
+	usuario_logado = get_usuario_logado(request)
+	
+	time = Time.objects.get(dono=usuario_logado.gestor.id)
+	membrosTime = MembrosTime.objects.filter(time = time)
+
+	contexto = {
+		'perfil_logado': usuario_logado,
+		'time':membrosTime
+	}
+
+	return render(request, 'meuTime.html', contexto)
+
+
+
 def verProjetos(request):
 	usuario_logado = get_usuario_logado(request)
 	projetos = Projeto.objects.filter(dono=usuario_logado.gestor.id)
@@ -112,9 +128,6 @@ def deletar_projeto(request, projeto_id):
 
 	return render(request, 'meusProjetos.html', contexto)
 	
-
-
-
 
 
 class RegistrarProjetoView(View):
