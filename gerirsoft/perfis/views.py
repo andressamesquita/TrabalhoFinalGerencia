@@ -272,3 +272,21 @@ def membro_tarefa(request, tarefa_id, membro_id):
 	tarefa.save()
 	
 	return redirect('index')
+
+
+def minhaTimeLine(request):
+	membro = Membro.objects.get(id = get_usuario_logado(request).membro.id)
+	tarefas = membro.get_minhas_tarefas()
+	print(tarefas)
+	contexto = {
+		'tarefas':tarefas
+	}
+	return render(request, 'minhaTimeLine.html', contexto)
+
+def projetosMembro(request):
+	membro = Membro.objects.get(id = get_usuario_logado(request).membro.id)
+	projetos = membro.get_meus_projetos()
+	contexto = {
+		'projetos':projetos
+	}
+	return render(request, 'projetosMembro.html', contexto)

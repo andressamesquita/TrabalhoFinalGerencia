@@ -13,8 +13,8 @@
             
             
         {% else %}
-            <a class="btn btn-primary" style="height: 55px;" href="#">MINHA TIMELINE</a>
-            <a class="btn btn-primary" style="height: 55px;" href="#">MEUS PROJETOS</a>
+            <a class="btn btn-primary" style="height: 55px;" href="{% url 'minhaTimeLine' %}">MINHA TIMELINE</a>
+            <a class="btn btn-primary" style="height: 55px;" href="{% url 'projetosMembro' %}">MEUS PROJETOS</a>
             <a class="btn btn-primary pull-right" style="height: 55px;" href="{% url 'logout' %}">Sair</a>
             <h3 class="pull-right gestor" style="margin-right: 2em;">Membro {{ perfil_logado.membro.nome }}</h3>
         {% endif %}

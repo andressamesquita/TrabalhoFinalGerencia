@@ -35,5 +35,7 @@ urlpatterns = [
     path('projeto/detail/novaTarefa/<int:projeto_id>', RegistrarTarefaView.as_view(), name='novaTarefa'),
     path('projeto/detail/<int:tarefa_id>/adicionar', adicionar_membro_tarefa, name='adicionar_membro_tarefa'),
     path('projeto/detail/<int:tarefa_id>/adicionar/<int:membro_id>', membro_tarefa, name='membro_tarefa'),
+    path('membro/timeline', minhaTimeLine, name='minhaTimeLine'),
+    path('membro/projetosMembro', projetosMembro, name='projetosMembro'),
 
 ]
