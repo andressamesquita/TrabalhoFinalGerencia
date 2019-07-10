@@ -1,10 +1,48 @@
-{% for projeto in projetos %}
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block body %}
 
-{{projeto.nome}}
-{{projeto.status}}
-{{projeto.data_prazo}}
-{{projeto.hora_prazo}}
-<br>
-<br>
+<div class="container-controle">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <h3>Projetos</h3>
+        
+    </nav>
+</div>
 
-{% endfor %}
+
+<div class="container">
+ 
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Data</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for projeto in projetos %}
+            <tr>
+            <th scope="row"><a href="{% url 'projetoDetail' projeto.id %}">{{projeto.nome}}</a></th>
+
+
+            <td>{{projeto.data_prazo}}</td>
+            <td>{{projeto.hora_prazo}}</td>
+            <td>{{projeto.statusProjeto}}</td>
+            <td><a class="btn btn-outline-danger" href="#">Excluir</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+    
+</div>
+  
+
+
+ 
+
+{% endblock %}
