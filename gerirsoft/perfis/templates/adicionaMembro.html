@@ -1,0 +1,7 @@
+{% for membro in time %}
+{{membro.membro.nome}}
+<a href="{% url 'membro_tarefa' tarefa.id membro.id %}">Adicionar</a>
+<br>
+<br>
+
+{% endfor %}

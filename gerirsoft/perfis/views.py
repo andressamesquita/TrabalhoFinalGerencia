@@ -251,3 +251,24 @@ class RegistrarTarefaView(View):
 
 
 		return render(request, self.template_name, {'form':form})
+
+
+def adicionar_membro_tarefa(request, tarefa_id):
+	tarefa = Tarefa.objects.get(id = tarefa_id)
+	time = Time.objects.get(dono = get_usuario_logado(request).gestor.id)
+	membrosTime = MembrosTime.objects.filter(time=time)
+
+	contexto = {
+		'tarefa':tarefa,
+		'time':membrosTime
+	}
+
+	return render(request, 'adicionaMembro.html', contexto)
+
+def membro_tarefa(request, tarefa_id, membro_id):
+	tarefa = Tarefa.objects.get(id = tarefa_id)
+	perfil = Membro.objects.get(id = membro_id)
+	tarefa.responsavel = perfil
+	tarefa.save()
+	
+	return redirect('index')

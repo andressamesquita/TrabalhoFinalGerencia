@@ -28,7 +28,17 @@
             {% for tarefa in tarefas %}
             <tr>
             <th scope="row"><a href="{% url 'projetoDetail' projeto.id %}">{{tarefa.nome_tarefa}}</a></th>
+
+
+            {% if tarefa.responsavel.nome %}
             <td>{{tarefa.responsavel.nome}}</td>
+
+            {% else %}
+            <td><a class="btn btn-outline-danger" href="{% url 'adicionar_membro_tarefa' tarefa.id %}">Adicionar</a></td>
+
+            {% endif %}
+
+
             <td>{{tarefa.data_prazo}}</td>
             <td>{{tarefa.hora_prazo}}</td>
             <td>{{tarefa.statusTarefa}}</td>

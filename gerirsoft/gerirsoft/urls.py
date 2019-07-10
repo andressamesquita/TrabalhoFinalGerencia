@@ -33,5 +33,7 @@ urlpatterns = [
     path('gestor/projetos/<int:projeto_id>/excluir', deletar_projeto, name='excluir_projeto'),
     path('gestor/time/<int:membro_id>/excluir', deletar_membro, name='excluir_membro'),
     path('projeto/detail/novaTarefa/<int:projeto_id>', RegistrarTarefaView.as_view(), name='novaTarefa'),
+    path('projeto/detail/<int:tarefa_id>/adicionar', adicionar_membro_tarefa, name='adicionar_membro_tarefa'),
+    path('projeto/detail/<int:tarefa_id>/adicionar/<int:membro_id>', membro_tarefa, name='membro_tarefa'),
 
 ]
